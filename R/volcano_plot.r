@@ -16,27 +16,27 @@
 #' dds <- DESeqDataSet(airway, design = ~ dex)
 #' res <- results(dds)
 #' volcano_plot(res)
-#' 
-#' @references 
-#' Wickham H (2016). ggplot2: Elegant Graphics for Data Analysis. 
+#'
+#' @references
+#' Wickham H (2016). ggplot2: Elegant Graphics for Data Analysis.
 #' Springer-Verlag New York. ISBN 978-3-319-24277-4, https://ggplot2.tidyverse.org.
-#' 
+#'
 #' @importFrom ggplot2 ggplot aes geom_point theme_minimal labs theme element_text
 #' @export
-#' 
+#'
 volcano_plot <- function(res, lfc_threshold=0, pval_threshold=0.05, title="Volcano Plot") {
   if (!("DESeqResults" %in% class(res))) {
     stop("Function input must be in DESeqResults format.")
   }
-  
+
   df <- data.frame(
     log2FoldChange = res$log2FoldChange,
     pval = res$padj
   )
   df <- df[!is.na(df$pval), ]
-  
+
   df$color <- ifelse(df$pval < pval_threshold & abs(df$log2FoldChange) > lfc_threshold, "red", "gray")
-  
+
   # Plot
   plot <- ggplot2::ggplot(df, ggplot2::aes(x = log2FoldChange, y = -log10(pval), color = color)) +
     ggplot2::geom_point(alpha = 0.8, size = 2) +
@@ -51,8 +51,8 @@ volcano_plot <- function(res, lfc_threshold=0, pval_threshold=0.05, title="Volca
       plot.title = ggplot2::element_text(hjust = 0.5, face = "bold"),
       legend.position = "none"
     )
-  
+
   print(plot)
-  
+
   return(plot)
 }

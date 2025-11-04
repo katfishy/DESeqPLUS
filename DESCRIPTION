@@ -1,0 +1,27 @@
+Package: DESeqPLUS
+Title: DESeq2 Data Visualization Tool for RNA-Seq Analysis
+Version: 0.0.0.9000
+Authors@R: 
+    person("Katie", "Lee", , "katiedain.lee@mail.utoronto.ca", role = c("aut", "cre"))
+Description: Provides functions to visualize and summarize DESeq2 RNA-seq analyses.
+  It includes PCA exploration, QC summary, volcano plots, and gene annotations.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.3
+URL: https://github.com/katfishy/DESeqPLUS
+Suggests: 
+    knitr,
+    rmarkdown,
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+Depends: 
+    R (>= 4.0)
+biocViews: 
+    RNASeq, Visualization, GeneExpression, Bioinformatics
+Imports: 
+    ggplot2 (>= 3.4.0),
+    DESeq2,
+    SummarizedExperiment
+VignetteBuilder: knitr
+
