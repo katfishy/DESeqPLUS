@@ -25,7 +25,9 @@ browseVignettes("DESeqPLUS")
 2. **pcaPlot** for conducting principal component analysis on normalized counts and visualize sample clustering, alllowing users to identify patterns before running differential gene analysis.
 3. **volcanoPlot** for producing a volcano plot to visualize differentially expressed genes, plotting log2 fold changes against -log10 adjusted p-values to highlight significant genes.
 
-The package also contains two cancer mutation datasets, called UCS.mutations and filteredUCSFirst100SNP. Refer to package vignettes for more details. An overview of the package is illustrated below.
+The package also contains the **airway** dataset with read counts of four human airway smooth muscle cell lines treated with dexamethasone. An overview of the package is illustrated below.
+
+<img width="578" height="403" alt="Screenshot 2025-11-04 at 8 42 39 PM" src="https://github.com/user-attachments/assets/9f0aacc5-9f96-4b57-a4c8-7190613b8f67" />
 
 ### Contributions:
 The author of the package is Katie Lee. The author wrote all functions currently included in the package: `qcPlot()`, `pcaPlot()`, and `volcanoPlot()`.
@@ -38,6 +40,7 @@ The author of the package is Katie Lee. The author wrote all functions currently
 The **airway** dataset was used throughout the package for examples, testing, and the vignette. Generative AI tools (ChatGPT) were used to assist with brainstorming, debugging, and optimization of documentations. All code suggestions from AI were reviewed by the author.
 
 ### References:
+- BioRender. (2025). Image created by Lee, K. Retrieved November 4, 2025, from https://app.biorender.com/
 - Himes, E. B, Jiang, X., Wagner, P., Hu, R., Wang, Q., Klanderman, B., Whitaker, M. R, Duan, Q., Lasky-Su, J., Nikolos, C., Jester, W., Johnson, M., Panettieri, A. R, Tantisira, G. K, Weiss, T. S, Lu, Q. (2014). “RNA-Seq Transcriptome Profiling Identifies CRISPLD2 as a Glucocorticoid Responsive Gene that Modulates Cytokine Function in Airway Smooth Muscle Cells.” PLoS ONE, 9(6), e99625. http://www.ncbi.nlm.nih.gov/pubmed/24926665.
 - Love, M.I., Huber, W. & Anders, S. Moderated estimation of fold change and dispersion for RNA-seq data with DESeq2. Genome Biol 15, 550 (2014). https://doi.org/10.1186/s13059-014-0550-8
 - Morgan M, Obenchain V, Hester J, Pagès H (2025). SummarizedExperiment: A container (S4 class) for matrix-like assays. doi:10.18129/B9.bioc.SummarizedExperiment, R package version 1.40.0, https://bioconductor.org/packages/SummarizedExperiment.
