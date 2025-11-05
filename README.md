@@ -35,9 +35,10 @@ The author of the package is Katie Lee. The author wrote all functions currently
 
 - `volcanoPlot()` creates a volcano plot to visualize differentially expressed genes using log2 fold changes and -log10 adjusted p-values. This function relies on **ggplot2** for plotting and uses base R for data manipulation.
 
-Generative AI tools (ChatGPT) were used to assist with brainstorming, debugging, and optimization of documentations. All code suggestions from AI were reviewed by the author.
+The **airway** dataset was used throughout the package for examples, testing, and the vignette. Generative AI tools (ChatGPT) were used to assist with brainstorming, debugging, and optimization of documentations. All code suggestions from AI were reviewed by the author.
 
 ### References:
+- Himes, E. B, Jiang, X., Wagner, P., Hu, R., Wang, Q., Klanderman, B., Whitaker, M. R, Duan, Q., Lasky-Su, J., Nikolos, C., Jester, W., Johnson, M., Panettieri, A. R, Tantisira, G. K, Weiss, T. S, Lu, Q. (2014). “RNA-Seq Transcriptome Profiling Identifies CRISPLD2 as a Glucocorticoid Responsive Gene that Modulates Cytokine Function in Airway Smooth Muscle Cells.” PLoS ONE, 9(6), e99625. http://www.ncbi.nlm.nih.gov/pubmed/24926665.
 - Love, M.I., Huber, W. & Anders, S. Moderated estimation of fold change and dispersion for RNA-seq data with DESeq2. Genome Biol 15, 550 (2014). https://doi.org/10.1186/s13059-014-0550-8
 - Morgan M, Obenchain V, Hester J, Pagès H (2025). SummarizedExperiment: A container (S4 class) for matrix-like assays. doi:10.18129/B9.bioc.SummarizedExperiment, R package version 1.40.0, https://bioconductor.org/packages/SummarizedExperiment.
 - OpenAI. (2025). ChatGPT (GPT-5) [Large language model] https://chat.openai.com/
