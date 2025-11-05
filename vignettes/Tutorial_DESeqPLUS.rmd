@@ -1,0 +1,69 @@
+---
+title: "Tutorial_DESeqPLUS"
+author: "Katie Lee"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{DESeqPLUS Vignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Introduction
+`DESeqPLUS` is an R package designed to simplify the visualization of RNA-seq data stored in **DESeqDataSet** objects. This vignette demonstrates the three main functions currently available:
+
+1. `qcPlot()` – Quick quality control plots.
+2. `pcaPlot()` – Principal component analysis plots.
+3. `volcanoPlot()` – Volcano plots of differentially expressed genes.
+
+We will use the **airway** dataset for demonstration.
+
+```{r setup, include=FALSE}
+library(DESeqPLUS)
+library(DESeq2)
+library(airway)
+data(airway)
+dds <- DESeqDataSet(airway, design = ~ dex)
+```
+# 1. Quality Control Plots: `qcPlot()`
+The `qcPlot()` function produces two plots: total library size per sample and distribution of log-transformed counts. This helps to detect samples with unusually low read counts or other quality issues.
+
+```{r}
+qcPlot(dds, title = "Airway QC Summary")
+```
+
+# 2. PCA Plot: `pcaPlot()`
+The `pcaPlot()` function performs principal component analysis on the most variable genes (default 500) to explore sample clustering and detect potential outliers. PCA is calculated on variance-stabilized counts.
+```{r}
+pcaPlot(dds, ntop = 500, title = "Airway PCA")
+```
+
+# 3. Volcano Plot: `volcanoPlot()`
+The `volcanoPlot()` function visualizes differential expression results from a DESeq2 analysis. The x-axis shows log2 fold changes, and the y-axis shows -log10 adjusted p-values, highlighting significantly up- or down-regulated genes.
+
+```{r}
+dds <- DESeq(dds)
+res <- results(dds, alpha = 0.1)
+volcanoPlot(res, title = "Airway Volcano Plot")
+```
+
+## Session Info
+
+R version 4.5.1 (2025-06-13)
+Platform: aarch64-apple-darwin20
+Running under: macOS Sequoia 15.2
+
+## References
+
+Himes, E. B, Jiang, X., Wagner, P., Hu, R., Wang, Q., Klanderman, B., Whitaker, M. R, Duan, Q., Lasky-Su, J., Nikolos, C., Jester, W., Johnson, M., Panettieri, A. R, Tantisira, G. K, Weiss, T. S, Lu, Q. (2014). “RNA-Seq Transcriptome Profiling Identifies CRISPLD2 as a Glucocorticoid Responsive Gene that Modulates Cytokine Function in Airway Smooth Muscle Cells.” PLoS ONE, 9(6), e99625. http://www.ncbi.nlm.nih.gov/pubmed/24926665.
+
+Love, M.I., Huber, W. & Anders, S. Moderated estimation of fold change and dispersion for RNA-seq data with DESeq2. Genome Biol 15, 550 (2014). https://doi.org/10.1186/s13059-014-0550-8
+
+Morgan M, Obenchain V, Hester J, Pagès H (2025). SummarizedExperiment: A container (S4 class) for matrix-like assays. doi:10.18129/B9.bioc.SummarizedExperiment, R package version 1.40.0, https://bioconductor.org/packages/SummarizedExperiment.
+
+OpenAI. (2025). ChatGPT (GPT-5) [Large language model] https://chat.openai.com/
+
+Wickham H (2016). ggplot2: Elegant Graphics for Data Analysis. Springer-Verlag New York. ISBN 978-3-319-24277-4, https://ggplot2.tidyverse.org.

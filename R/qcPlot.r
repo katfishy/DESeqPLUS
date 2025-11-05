@@ -6,6 +6,7 @@
 #'
 #' @param dds : DESeqDataSet
 #' @param title : Optional title for plots
+#' @param min_counts : Minimum total counts per gene to include (default = 10)
 #'
 #' @return two ggplot2 figures
 #'
@@ -13,7 +14,7 @@
 #' library(airway)
 #' data(airway)
 #' dds <- DESeqDataSet(airway, design = ~ dex)
-#' qc_summary(dds)
+#' qcPlot(dds)
 #'
 #' @references
 #' Love, M.I., Huber, W. & Anders, S. Moderated estimation of fold change and
@@ -26,13 +27,15 @@
 #' @importFrom DESeq2 counts
 #' @importFrom ggplot2 ggplot aes geom_bar coord_flip theme_minimal labs geom_boxplot theme element_text
 #' @export
-
-qc_summary <- function(dds, title="Quality Control Summary") {
+qcPlot <- function(dds, title="Quality Control Summary", min_counts = 10) {
   if (inherits(dds, "DESeqDataSet")) {
     counts_data <- counts(dds)
   } else {
     stop("Function input must be in DESEqDataSet format.")
   }
+
+  # Filter out low-count genes
+  counts_data <- counts_data[rowSums(counts_data) >= min_counts, ]
 
   # Total counts per sample
   library_size <- colSums(counts_data)
@@ -59,14 +62,11 @@ qc_summary <- function(dds, title="Quality Control Summary") {
   plot2 <- ggplot2::ggplot(df_log, ggplot2::aes(x=Sample, y=LogCount, fill = Sample)) +
     ggplot2::geom_boxplot(outlier.shape = NA) +
     ggplot2::theme_minimal(base_size = 12) +
-    # ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 45, hjust = 1),
-    #                legend.position = "none") +
+    ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 45, hjust = 1),
+                   legend.position = "none") +
     ggplot2::labs(title = paste(title, " (Log10 Counts per Sample)"),
                   x = "Sample",
                   y = "Log10(Counts + 1)")
-
-  print(plot1)
-  print(plot2)
 
   return(list(library_plot=plot1, box_plot=plot2))
 }
