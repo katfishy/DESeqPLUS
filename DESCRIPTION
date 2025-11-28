@@ -23,6 +23,7 @@ biocViews:
 Imports: 
     ggplot2 (>= 3.4.0),
     DESeq2,
-    SummarizedExperiment
+    SummarizedExperiment,
+    shiny
 VignetteBuilder: knitr
 

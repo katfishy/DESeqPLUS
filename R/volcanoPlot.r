@@ -24,33 +24,29 @@
 #'
 #' @importFrom ggplot2 ggplot aes geom_point theme_minimal labs theme element_text
 #' @export
-volcanoPlot <- function(res, lfc_threshold=0, pval_threshold=0.05, title="Volcano Plot") {
+volcanoPlot <- function(res, lfc_threshold=1, pval_threshold=0.05, title="Volcano Plot") {
   if (!("DESeqResults" %in% class(res))) {
     stop("Function input must be in DESeqResults format.")
   }
 
-  df <- data.frame(
-    log2FoldChange = res$log2FoldChange,
-    pval = res$padj
-  )
-  df <- df[!is.na(df$pval), ]
+  df <- data.frame(res)
 
-  df$color <- ifelse(df$pval < pval_threshold & abs(df$log2FoldChange) > lfc_threshold, "red", "gray")
+  df$significance <- "Not Significant"
+  df$significance[df$padj < pval_threshold & df$log2FoldChange > lfc_threshold] <- "Up"
+  df$significance[df$padj < pval_threshold & df$log2FoldChange < -lfc_threshold] <- "Down"
 
   # Plot
-  plot <- ggplot2::ggplot(df, ggplot2::aes(x = log2FoldChange, y = -log10(pval), color = color)) +
-    ggplot2::geom_point(alpha = 0.8, size = 2) +
-    ggplot2::theme_minimal(base_size = 12) +
-    ggplot2::labs(
+  plot <- ggplot2::ggplot(df, aes(x = log2FoldChange, y = -log10(padj), color = significance)) +
+    geom_point(alpha = 0.7, size = 1.5) +
+    ggplot2::scale_color_manual(values = c("Down" = "blue", "Up" = "red", "Not Significant" = "grey")) +
+    theme_minimal() +
+    labs(
       title = title,
       x = "Log2 Fold Change",
-      y = "-Log10 Adjusted P-value",
-      color = "Significant"
+      y = "-Log10 Adjusted p-value"
     ) +
-    ggplot2::theme(
-      plot.title = ggplot2::element_text(hjust = 0.5, face = "bold"),
-      legend.position = "none"
-    )
+    ggplot2::geom_vline(xintercept = c(-lfc_threshold, lfc_threshold), linetype = "dashed", color = "black") +
+    ggplot2::geom_hline(yintercept = -log10(pval_threshold), linetype = "dashed", color = "black")
 
   return(plot)
 }

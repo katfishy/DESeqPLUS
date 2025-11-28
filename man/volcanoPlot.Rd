@@ -6,7 +6,7 @@
 \usage{
 volcanoPlot(
   res,
-  lfc_threshold = 0,
+  lfc_threshold = 1,
   pval_threshold = 0.05,
   title = "Volcano Plot"
 )
