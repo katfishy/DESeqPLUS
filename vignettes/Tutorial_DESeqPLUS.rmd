@@ -3,7 +3,7 @@ title: "Tutorial_DESeqPLUS"
 author: "Katie Lee"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{DESeqPLUS Vignette}
+  %\VignetteIndexEntry{Tutorial_DESeqPLUS}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

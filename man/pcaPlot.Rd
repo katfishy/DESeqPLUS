@@ -38,7 +38,7 @@ A container (S4 class) for matrix-like assays.
 doi:10.18129/B9.bioc.SummarizedExperiment, R package version 1.40.0,
 https://bioconductor.org/packages/SummarizedExperiment.
 
-OpenAI. (2025). ChatGPT (GPT-5) \link{Large language model} https://chat.openai.com/
+OpenAI. (2025). ChatGPT (GPT-5) https://chat.openai.com/
 
 Wickham H (2016). ggplot2: Elegant Graphics for Data Analysis.
 Springer-Verlag New York. ISBN 978-3-319-24277-4, https://ggplot2.tidyverse.org.

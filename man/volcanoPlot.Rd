@@ -32,6 +32,7 @@ library(DESeq2)
 library(airway)
 data(airway)
 dds <- DESeqDataSet(airway, design = ~ dex)
+dds <- DESeq(dds)
 res <- results(dds)
 volcanoPlot(res)
 
