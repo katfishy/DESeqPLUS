@@ -13,7 +13,7 @@
 #' library(airway)
 #' data(airway)
 #' dds <- DESeqDataSet(airway, design = ~ dex)
-#' pcaPlot(dds)
+#' DESEqPLUS::pcaPlot(dds)
 #'
 #' @references
 #' Love, M.I., Huber, W. & Anders, S. Moderated estimation of fold change and

@@ -25,7 +25,7 @@ library(DESeq2)
 library(airway)
 data(airway)
 dds <- DESeqDataSet(airway, design = ~ dex)
-pcaPlot(dds)
+DESEqPLUS::pcaPlot(dds)
 
 }
 \references{

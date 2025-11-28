@@ -16,7 +16,7 @@
 #' dds <- DESeqDataSet(airway, design = ~ dex)
 #' dds <- DESeq(dds)
 #' res <- results(dds)
-#' volcanoPlot(res)
+#' DESeqPLUS::volcanoPlot(res)
 #'
 #' @references
 #' Wickham H (2016). ggplot2: Elegant Graphics for Data Analysis.
@@ -37,9 +37,9 @@ volcanoPlot <- function(res, lfc_threshold=1, pval_threshold=0.05, title="Volcan
 
   # Plot
   plot <- ggplot2::ggplot(df, aes(x = log2FoldChange, y = -log10(padj), color = significance)) +
-    geom_point(alpha = 0.7, size = 1.5) +
+    ggplot2::geom_point(alpha = 0.7, size = 1.5) +
     ggplot2::scale_color_manual(values = c("Down" = "blue", "Up" = "red", "Not Significant" = "grey")) +
-    theme_minimal() +
+    ggplot2::theme_minimal() +
     labs(
       title = title,
       x = "Log2 Fold Change",

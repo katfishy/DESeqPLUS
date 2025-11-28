@@ -34,7 +34,7 @@ data(airway)
 dds <- DESeqDataSet(airway, design = ~ dex)
 dds <- DESeq(dds)
 res <- results(dds)
-volcanoPlot(res)
+DESeqPLUS::volcanoPlot(res)
 
 }
 \references{

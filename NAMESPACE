@@ -2,6 +2,7 @@
 
 export(pcaPlot)
 export(qcPlot)
+export(runDESeqPLUS)
 export(volcanoPlot)
 importFrom(DESeq2,counts)
 importFrom(DESeq2,varianceStabilizingTransformation)
@@ -18,4 +19,5 @@ importFrom(ggplot2,ggplot)
 importFrom(ggplot2,labs)
 importFrom(ggplot2,theme)
 importFrom(ggplot2,theme_minimal)
+importFrom(shiny,runApp)
 importFrom(stats,prcomp)
