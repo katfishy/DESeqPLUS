@@ -63,5 +63,5 @@ The **airway** dataset was used throughout the package for examples, testing, an
 - Wickham H (2016). ggplot2: Elegant Graphics for Data Analysis. Springer-Verlag New York. ISBN 978-3-319-24277-4, https://ggplot2.tidyverse.org.
 
 ### Acknowledgements:
-This package was developed as part of an assessment for 2025 BCB410H: Applied Bioinformatics course at the University of Toronto, Toronto, CANADA. TestingPackage welcomes issues, enhancement requests, and other contributions. To submit an issue, use the GitHub issues. Many thanks to those who provided feedback to improve this package.
+This package was developed as part of an assessment for 2025 BCB410H: Applied Bioinformatics course at the University of Toronto, Toronto, CANADA. `DESeqPLUS` welcomes issues, enhancement requests, and other contributions. To submit an issue, use the GitHub issues. Many thanks to those who provided feedback to improve this package.
 

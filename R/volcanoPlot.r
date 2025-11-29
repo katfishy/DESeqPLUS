@@ -26,7 +26,8 @@
 #'
 #' @importFrom ggplot2 ggplot aes geom_point theme_minimal labs theme element_text
 #' @export
-volcanoPlot <- function(res, lfc_threshold=1, pval_threshold=0.05, title="Volcano Plot") {
+volcanoPlot <- function(res, lfc_threshold = 1, pval_threshold = 0.05,
+                        title = "Volcano Plot") {
   if (!("DESeqResults" %in% class(res))) {
     stop("Function input must be in DESeqResults format.")
   }
@@ -34,21 +35,27 @@ volcanoPlot <- function(res, lfc_threshold=1, pval_threshold=0.05, title="Volcan
   result_df <- data.frame(res)
 
   result_df$significance <- "Not Significant"
-  result_df$significance[result_df$padj < pval_threshold & result_df$log2FoldChange > lfc_threshold] <- "Up"
-  result_df$significance[result_df$padj < pval_threshold & result_df$log2FoldChange < -lfc_threshold] <- "Down"
+  result_df$significance[result_df$padj < pval_threshold &
+                           result_df$log2FoldChange > lfc_threshold] <- "Up"
+  result_df$significance[result_df$padj < pval_threshold &
+                           result_df$log2FoldChange < -lfc_threshold] <- "Down"
 
   # Plot
-  plot <- ggplot2::ggplot(result_df, aes(x = log2FoldChange, y = -log10(padj), color = significance)) +
+  plot <- ggplot2::ggplot(result_df, aes(x = log2FoldChange, y = -log10(padj),
+                                         color = significance)) +
     ggplot2::geom_point(alpha = 0.7, size = 1.5) +
-    ggplot2::scale_color_manual(values = c("Down" = "blue", "Up" = "red", "Not Significant" = "grey")) +
+    ggplot2::scale_color_manual(values = c("Down" = "blue", "Up" = "red",
+                                           "Not Significant" = "grey")) +
     ggplot2::theme_minimal() +
     labs(
       title = title,
       x = "Log2 Fold Change",
       y = "-Log10 Adjusted p-value"
     ) +
-    ggplot2::geom_vline(xintercept = c(-lfc_threshold, lfc_threshold), linetype = "dashed", color = "black") +
-    ggplot2::geom_hline(yintercept = -log10(pval_threshold), linetype = "dashed", color = "black")
+    ggplot2::geom_vline(xintercept = c(-lfc_threshold, lfc_threshold),
+                        linetype = "dashed", color = "black") +
+    ggplot2::geom_hline(yintercept = -log10(pval_threshold),
+                        linetype = "dashed", color = "black")
 
   return(plot)
 }

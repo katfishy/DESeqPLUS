@@ -29,11 +29,11 @@
 #' @importFrom DESeq2 counts
 #' @importFrom ggplot2 ggplot aes geom_bar coord_flip theme_minimal labs geom_boxplot theme element_text
 #' @export
-qcPlot <- function(dds, title="Quality Control Summary", min_counts = 10) {
+qcPlot <- function(dds, title = "Quality Control Summary", min_counts = 10) {
   if (inherits(dds, "DESeqDataSet")) {
     counts_data <- counts(dds)
   } else {
-    stop("Function input must be in DESEqDataSet format.")
+    stop("Function input must be in DESeqDataSet format.")
   }
 
   # Filter out low-count genes
@@ -41,7 +41,8 @@ qcPlot <- function(dds, title="Quality Control Summary", min_counts = 10) {
 
   # Total counts per sample
   library_size <- colSums(counts_data)
-  df_library <- data.frame(Sample = names(library_size), LibrarySize = library_size)
+  df_library <- data.frame(Sample = names(library_size),
+                           LibrarySize = library_size)
 
   # Change counts for boxplot
   log_counts <- log10(counts_data + 1)
@@ -52,8 +53,10 @@ qcPlot <- function(dds, title="Quality Control Summary", min_counts = 10) {
   )
 
   # Plot 1: Total Library Size
-  plot1 <- ggplot2::ggplot(df_library, ggplot2::aes(x=reorder(Sample, LibrarySize), y=LibrarySize)) +
-    ggplot2::geom_bar(stat="identity", fill="red") +
+  plot1 <- ggplot2::ggplot(df_library,
+                           ggplot2::aes(x = reorder(Sample, LibrarySize),
+                                                    y = LibrarySize)) +
+    ggplot2::geom_bar(stat = "identity", fill = "red") +
     ggplot2::coord_flip() +
     ggplot2::theme_minimal(base_size=12) +
     ggplot2::labs(title=paste(title, " (Library Size Per Sample)"),
@@ -61,7 +64,8 @@ qcPlot <- function(dds, title="Quality Control Summary", min_counts = 10) {
                   y = "Total Reads")
 
   # Plot 2: Distribution of log10 counts per sample
-  plot2 <- ggplot2::ggplot(df_log, ggplot2::aes(x=Sample, y=LogCount, fill = Sample)) +
+  plot2 <- ggplot2::ggplot(df_log, ggplot2::aes(x = Sample,
+                                                y = LogCount, fill = Sample)) +
     ggplot2::geom_boxplot(outlier.shape = NA) +
     ggplot2::theme_minimal(base_size = 12) +
     ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 45, hjust = 1),
@@ -70,7 +74,7 @@ qcPlot <- function(dds, title="Quality Control Summary", min_counts = 10) {
                   x = "Sample",
                   y = "Log10(Counts + 1)")
 
-  return(list(library_plot=plot1, box_plot=plot2))
+  return(list(library_plot = plot1, box_plot = plot2))
 }
 
 # [ END]

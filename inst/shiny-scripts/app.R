@@ -50,7 +50,8 @@ server <- function(input, output) {
         # Step 2: Set factors and reference
         design_col <- gsub("~\\s*", "", input$design)
         colData[[design_col]] <- factor(colData[[design_col]])
-        colData[[design_col]] <- relevel(colData[[design_col]], ref = input$reference)
+        colData[[design_col]] <- relevel(colData[[design_col]],
+                                         ref = input$reference)
 
         incProgress(0.3, detail = "Creating DESeqDataSet...")
 

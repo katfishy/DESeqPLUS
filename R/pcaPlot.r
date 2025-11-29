@@ -37,22 +37,22 @@
 #' @importFrom ggplot2 ggplot aes_string geom_point theme_minimal labs theme element_text
 #' @importFrom stats prcomp
 #' @export
-pcaPlot <- function(dds, ntop=500, title="PCA Plot") {
+pcaPlot <- function(dds, ntop = 500, title = "PCA Plot") {
   if (inherits(dds, "DESeqDataSet")) {
     # Normalize data
-    vsd <- DESeq2::varianceStabilizingTransformation(dds, blind=TRUE)
+    vsd <- DESeq2::varianceStabilizingTransformation(dds, blind = TRUE)
     mat <- SummarizedExperiment::assay(vsd)
     metadata <- as.data.frame(SummarizedExperiment::colData(vsd))
   } else {
-    stop("Function input must be in DESEqDataSet format.")
+    stop("Function input must be in DESeqDataSet format.")
   }
 
-  vars <- apply(mat, 1, var, na.rm=TRUE)
-  top_genes <- order(vars, decreasing=TRUE)[seq_len(min(ntop, length(vars)))]
+  vars <- apply(mat, 1, var, na.rm = TRUE)
+  top_genes <- order(vars, decreasing = TRUE)[seq_len(min(ntop, length(vars)))]
   mat_top <- t(mat[top_genes, ])
 
   # PCA
-  pca <- stats::prcomp(mat_top, scale.=TRUE)
+  pca <- stats::prcomp(mat_top, scale. = TRUE)
   pca_data <- data.frame(pca$x, metadata)
 
   # Percent Variance

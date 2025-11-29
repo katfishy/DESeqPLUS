@@ -1,5 +1,5 @@
 Package: DESeqPLUS
-Title: DESeq2 Data Visualization Tool for RNA-Seq Analysis
+Title: DESeqPLUS
 Version: 0.0.0.9000
 Authors@R: 
     person("Katie", "Lee", , "katiedain.lee@mail.utoronto.ca", role = c("aut", "cre"))
@@ -19,7 +19,7 @@ Config/testthat/edition: 3
 Depends: 
     R (>= 4.0)
 biocViews: 
-    RNASeq, Visualization, GeneExpression, Bioinformatics
+    RNASeq, DifferentialExpression, Visualization, ExperimentData, Bioinformatics
 Imports: 
     ggplot2 (>= 3.4.0),
     DESeq2,
