@@ -1,0 +1,13 @@
+citHeader("To cite DESeqPLUS in publications use:")
+
+citEntry(
+  entry    = "Unpublished",
+  title    = "DESeqPLUS: Simplify DESeq2 Visualization",
+  author   = "Katie Lee",
+  note     = "Unpublished",
+  year     = "2025",
+
+  textversion =
+    paste("Lee, K. (2025) DESeqPLUS: Simplify DESeq2 Visualization.
+        Unpublished. URL https://github.com/katfishy/DESeqPLUS.")
+)
