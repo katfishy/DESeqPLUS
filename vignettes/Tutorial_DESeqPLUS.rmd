@@ -23,10 +23,15 @@ We will use the **airway** dataset for demonstration.
 
 ```{r}
 
+options(repos = c(
+  CRAN = "https://clould.r-project.org",
+  BiocManager = "https://bioconductor.org/packages/3.19/bioc"
+))
+
+if (!requireNamespace("BiocManager", quietly = TRUE))
+  install.packages("BiocManager")
 if (!requireNamespace("airway", quietly = TRUE)) {
-    if (!requireNamespace("BiocManager", quietly = TRUE))
-        install.packages("BiocManager")
-    BiocManager::install("airway")
+  BiocManager::install("airway")
 }
 
 library(DESeqPLUS)

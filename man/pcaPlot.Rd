@@ -23,6 +23,12 @@ This function produces a PCA plot to explore sample relationships and
 detect possible outliers of the DESeqDataSet file.
 }
 \examples{
+if (!requireNamespace("airway", quietly = TRUE)) {
+  if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+  BiocManager::install("airway")
+  }
+
 library(DESeq2)
 library(airway)
 data(airway)
