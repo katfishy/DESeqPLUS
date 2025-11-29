@@ -11,8 +11,8 @@ ui <- fluidPage(
         sidebarPanel(
             fileInput("countFile", "Upload Count Matrix (CSV)", accept = ".csv"),
             fileInput("coldataFile", "Upload ColData (CSV)", accept = ".csv"),
-            textInput("design", "Design Formula", value = "~ condition"),
-            textInput("reference", "Reference", value = "Control"),
+            textInput("design", "Design Formula", value = "~ dex"),
+            textInput("reference", "Reference", value = "control"),
             actionButton("run", "Create Plot")
         ),
 
@@ -40,50 +40,51 @@ server <- function(input, output) {
         # Make sure they have matching sample names
         # stopifnot(all(colnames(counts) %in% rownames(colData)))
 
-        incProgress(0.3, detail = "Preparing data...")
+        incProgress(0.1, detail = "Preparing data...")
 
         # Step 2: Set factors and reference
         design_col <- gsub("~\\s*", "", input$design)
         colData[[design_col]] <- factor(colData[[design_col]])
         colData[[design_col]] <- relevel(colData[[design_col]], ref = input$reference)
 
-        incProgress(0.6, detail = "Creating DESeqDataSet...")
+        incProgress(0.3, detail = "Creating DESeqDataSet...")
 
         # Step 3: Create DESeqDataSet
-        dds <- DESeqDataSetFromMatrix(countData = counts,
+        dds_raw <- DESeqDataSetFromMatrix(countData = counts,
                                       colData = colData,
                                       design = as.formula(input$design))
+
+        incProgress(0.6, detail = "Running DESeq...")
+
+        # Step 4: Run DESeq
+        dds <- DESeq(dds_raw)
+        res <- results(dds)
         incProgress(1, detail = "Done!")
 
-        return(dds)
+        result <- list(dds_raw, res)
+
+        return(result)
       })
     })
 
     output$qcBarPlot <- renderPlot({
       req(dds_data())
-      DESeqPLUS::qcPlot(dds_data())[[1]]
+      DESeqPLUS::qcPlot(dds_data()[[1]])[[1]]
     })
 
     output$qcBoxPlot <- renderPlot({
       req(dds_data())
-      DESeqPLUS::qcPlot(dds_data())[[2]]
+      DESeqPLUS::qcPlot(dds_data()[[1]])[[2]]
     })
 
     output$pcaPlot <- renderPlot({
       req(dds_data())
-      DESeqPLUS::pcaPlot(dds_data())
+      DESeqPLUS::pcaPlot(dds_data()[[1]])
     })
 
     output$volcanoPlot <- renderPlot({
-      withProgress(message = "Starting DESeqPLUS...", {
-        req(dds_data())
-        incProgress(0.5, detail = "Running DESeq2...")
-        dds <- DESeq(dds_data())
-        res <- results(dds)
-        incProgress(0.8, detail = "Creating Plot...")
-        DESeqPLUS::volcanoPlot(res)
-        incProgress(1, detail = "Done!")
-      })
+      req(dds_data())
+      DESeqPLUS::volcanoPlot(dds_data()[[2]])
     })
 }
 
