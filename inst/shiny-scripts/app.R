@@ -18,10 +18,11 @@ ui <- fluidPage(
 
         mainPanel(
            tabsetPanel(
-             tabPanel("qcBarPlot", plotOutput("qcBarPlot")),
-             tabPanel("qcBoxPlot", plotOutput("qcBoxPlot")),
+             tabPanel("QC Bar", plotOutput("qcBarPlot")),
+             tabPanel("QC Box", plotOutput("qcBoxPlot")),
              tabPanel("PCA", plotOutput("pcaPlot")),
-             tabPanel("Volcano", plotOutput("volcanoPlot"))
+             tabPanel("Volcano", plotOutput("volcanoPlot")),
+             tabPanel("Summary", verbatimTextOutput("summaryText"))
            )
         )
     )
@@ -65,6 +66,12 @@ server <- function(input, output) {
 
         return(result)
       })
+    })
+
+    output$summaryText <- renderPrint({
+      req(dds_data()[[2]])
+      s <- summary(dds_data()[[2]])
+      print(s)
     })
 
     output$qcBarPlot <- renderPlot({
