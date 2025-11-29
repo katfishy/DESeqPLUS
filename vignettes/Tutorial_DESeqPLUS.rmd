@@ -22,6 +22,13 @@ knitr::opts_chunk$set(echo = TRUE)
 We will use the **airway** dataset for demonstration.
 
 ```{r}
+
+if (!requireNamespace("airway", quietly = TRUE)) {
+    if (!requireNamespace("BiocManager", quietly = TRUE))
+        install.packages("BiocManager")
+    BiocManager::install("airway")
+}
+
 library(DESeqPLUS)
 library(DESeq2)
 library(airway)
