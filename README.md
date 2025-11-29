@@ -17,6 +17,8 @@ To run the shinyApp:
 runDESeqPLUS()
 ```
 
+The demo data to test the Shiny app is located in https://github.com/katfishy/DESeqPLUS/tree/main/inst/extdata
+
 ### Overview:
 ```
 ls("package:DESeqPLUS")
