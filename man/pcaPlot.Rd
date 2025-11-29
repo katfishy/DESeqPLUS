@@ -2,7 +2,9 @@
 % Please edit documentation in R/pcaPlot.r
 \name{pcaPlot}
 \alias{pcaPlot}
-\title{Principal Component Analysis (PCA) on Normalized RNA-seq Data}
+\title{Purpose: Principal Component Analysis (PCA) on Normalized RNA-seq Data
+Author: Katie Lee
+Date: November 4, 2025}
 \usage{
 pcaPlot(dds, ntop = 500, title = "PCA Plot")
 }

@@ -2,7 +2,9 @@
 % Please edit documentation in R/volcanoPlot.r
 \name{volcanoPlot}
 \alias{volcanoPlot}
-\title{Volcano Plot from DESeq2 results}
+\title{Purpose: Volcano Plot from DESeq2 results
+Author: Katie Lee
+Date: November 4, 2025}
 \usage{
 volcanoPlot(
   res,

@@ -2,7 +2,9 @@
 % Please edit documentation in R/qcPlot.r
 \name{qcPlot}
 \alias{qcPlot}
-\title{Quick Quality Control Plots for RNA-seq data before DESeq2 analysis}
+\title{Purpose: Quick Quality Control Plots for RNA-seq data before DESeq2 analysis
+Author: Katie Lee
+Date: November 4, 2025}
 \usage{
 qcPlot(dds, title = "Quality Control Summary", min_counts = 10)
 }

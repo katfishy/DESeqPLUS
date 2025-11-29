@@ -1,4 +1,6 @@
-#' Quick Quality Control Plots for RNA-seq data before DESeq2 analysis
+#' Purpose: Quick Quality Control Plots for RNA-seq data before DESeq2 analysis
+#' Author: Katie Lee
+#' Date: November 4, 2025
 #'
 #' This function produces a set of QC plots to examine the DESeqDataSet.
 #' This includes the total library size per sample and distribution of
@@ -70,3 +72,5 @@ qcPlot <- function(dds, title="Quality Control Summary", min_counts = 10) {
 
   return(list(library_plot=plot1, box_plot=plot2))
 }
+
+# [ END]

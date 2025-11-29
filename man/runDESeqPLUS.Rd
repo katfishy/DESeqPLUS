@@ -2,7 +2,9 @@
 % Please edit documentation in R/runDESeqPLUS.r
 \name{runDESeqPLUS}
 \alias{runDESeqPLUS}
-\title{Shiny App for DESeqPLUS}
+\title{Purpose: Shiny App for DESeqPLUS
+Author: Katie Lee
+Date: November 28, 2025}
 \usage{
 runDESeqPLUS()
 }

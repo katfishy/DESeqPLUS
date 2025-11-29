@@ -1,4 +1,6 @@
-#' Volcano Plot from DESeq2 results
+#' Purpose: Volcano Plot from DESeq2 results
+#' Author: Katie Lee
+#' Date: November 4, 2025
 #'
 #' This function produces a volcano plot showing log2 fold changes vs -log10 p-values.
 #' Points with p-value less than threshold are colored in red, and others are grey.
@@ -29,14 +31,14 @@ volcanoPlot <- function(res, lfc_threshold=1, pval_threshold=0.05, title="Volcan
     stop("Function input must be in DESeqResults format.")
   }
 
-  df <- data.frame(res)
+  result_df <- data.frame(res)
 
-  df$significance <- "Not Significant"
-  df$significance[df$padj < pval_threshold & df$log2FoldChange > lfc_threshold] <- "Up"
-  df$significance[df$padj < pval_threshold & df$log2FoldChange < -lfc_threshold] <- "Down"
+  result_df$significance <- "Not Significant"
+  result_df$significance[result_df$padj < pval_threshold & result_df$log2FoldChange > lfc_threshold] <- "Up"
+  result_df$significance[result_df$padj < pval_threshold & result_df$log2FoldChange < -lfc_threshold] <- "Down"
 
   # Plot
-  plot <- ggplot2::ggplot(df, aes(x = log2FoldChange, y = -log10(padj), color = significance)) +
+  plot <- ggplot2::ggplot(result_df, aes(x = log2FoldChange, y = -log10(padj), color = significance)) +
     ggplot2::geom_point(alpha = 0.7, size = 1.5) +
     ggplot2::scale_color_manual(values = c("Down" = "blue", "Up" = "red", "Not Significant" = "grey")) +
     ggplot2::theme_minimal() +
@@ -50,3 +52,5 @@ volcanoPlot <- function(res, lfc_threshold=1, pval_threshold=0.05, title="Volcan
 
   return(plot)
 }
+
+# [ END]

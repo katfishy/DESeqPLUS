@@ -1,4 +1,6 @@
-#' Principal Component Analysis (PCA) on Normalized RNA-seq Data
+#' Purpose: Principal Component Analysis (PCA) on Normalized RNA-seq Data
+#' Author: Katie Lee
+#' Date: November 4, 2025
 #'
 #' This function produces a PCA plot to explore sample relationships and
 #' detect possible outliers of the DESeqDataSet file.
@@ -81,3 +83,5 @@ pcaPlot <- function(dds, ntop=500, title="PCA Plot") {
 
   return(plot)
 }
+
+# [ END]

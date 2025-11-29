@@ -1,3 +1,7 @@
+#' Purpose: Shiny App for DESeqPLUS
+#' Author: Katie Lee
+#' Date: November 28, 2025
+
 library(shiny)
 library(DESeq2)
 library(ggplot2)
@@ -39,7 +43,7 @@ server <- function(input, output) {
         colData <- read.csv(input$coldataFile$datapath, row.names = 1)
 
         # Make sure they have matching sample names
-        # stopifnot(all(colnames(counts) %in% rownames(colData)))
+        stopifnot(all(colnames(counts) %in% rownames(colData)))
 
         incProgress(0.1, detail = "Preparing data...")
 
@@ -97,3 +101,5 @@ server <- function(input, output) {
 
 # Run the application
 shinyApp(ui = ui, server = server)
+
+# [ END]

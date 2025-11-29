@@ -1,4 +1,6 @@
-#' Shiny App for DESeqPLUS
+#' Purpose: Shiny App for DESeqPLUS
+#' Author: Katie Lee
+#' Date: November 28, 2025
 #'
 #' This function launches the Shiny app for DESEqPLUS.
 #'
@@ -16,3 +18,5 @@ runDESeqPLUS <- function() {
   actionShiny <- shiny::runApp(appLocation, display.mode = "normal")
   return(actionShiny)
 }
+
+# [ END]
