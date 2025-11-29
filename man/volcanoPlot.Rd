@@ -30,12 +30,6 @@ This function produces a volcano plot showing log2 fold changes vs -log10 p-valu
 Points with p-value less than threshold are colored in red, and others are grey.
 }
 \examples{
-if (!requireNamespace("airway", quietly = TRUE)) {
-  if (!requireNamespace("BiocManager", quietly = TRUE))
-    install.packages("BiocManager")
-  BiocManager::install("airway")
-  }
-
 library(DESeq2)
 library(airway)
 data(airway)

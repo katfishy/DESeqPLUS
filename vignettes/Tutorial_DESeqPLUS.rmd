@@ -37,6 +37,7 @@ if (!requireNamespace("airway", quietly = TRUE)) {
 library(DESeqPLUS)
 library(DESeq2)
 library(airway)
+
 data(airway)
 dds <- DESeqDataSet(airway, design = ~ dex)
 ```

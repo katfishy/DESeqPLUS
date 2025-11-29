@@ -12,12 +12,6 @@
 #' @return a ggplot2 PCA plot
 #'
 #' @examples
-#' if (!requireNamespace("airway", quietly = TRUE)) {
-#'   if (!requireNamespace("BiocManager", quietly = TRUE))
-#'     install.packages("BiocManager")
-#'   BiocManager::install("airway")
-#'   }
-#'
 #' library(DESeq2)
 #' library(airway)
 #' data(airway)
